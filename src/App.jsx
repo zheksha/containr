@@ -1,19 +1,20 @@
 import './App.css'
+import { Containers } from './components/Containers'
+import { Items } from './components/Items'
 import { NavigationMenuComponent } from './components/NavigationMenuComponent'
 import { ResizableComponent } from './components/ResizableComponent'
+import { ThemeProvider } from './components/ThemeProvider'
 
 const App = () => {
   return (
-    <>
-      <div>
-        <NavigationMenuComponent />
-        <ResizableComponent
-          primary={'test'}
-          secondary={'two'}
-          tertiary={'three'}
-        />
-      </div>
-    </>
+    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+      <NavigationMenuComponent />
+      <ResizableComponent
+        primary={<Items />}
+        secondary={<Containers />}
+        tertiary={'three'}
+      />
+    </ThemeProvider>
   )
 }
 
