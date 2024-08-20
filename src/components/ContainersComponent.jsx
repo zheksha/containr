@@ -9,7 +9,7 @@ import {
 import { CirclePlus, Plus } from 'lucide-react'
 import { Textarea } from './ui/textarea'
 
-export const Containers = () => {
+export const ContainersComponent = () => {
   return (
     <div className="flex justify-between items-center w-full">
       <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
@@ -62,7 +62,7 @@ export const Containers = () => {
 
               {/** Button to submit */}
               <div className="flex justify-end mt-2">
-                <Button variant="secondary">
+                <Button>
                   Add <Plus className="ml-2 h-4 w-4" />
                 </Button>
               </div>

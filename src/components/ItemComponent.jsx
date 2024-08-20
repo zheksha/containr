@@ -1,16 +1,44 @@
-import { Trash } from 'lucide-react'
-import React from 'react'
+/* eslint-disable react/prop-types */
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableFooter,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table'
 
-const ItemComponent = ({ id, description }) => {
+export const ItemComponent = ({ itemsList }) => {
   return (
-    <div className="mb-2 flex justify-between items-center w-full">
-      <p key={id}>{description}</p>
-      <Trash
-        className="ml-2 h-4 w-4"
-        onClick={() => window.alert('Are you sure')}
-      />
-    </div>
+    <Table
+      className="text-left border rounded-lg "
+      containerClassname="h-fit max-h-[650px] overflow-y-auto relative scrollbar"
+    >
+      <TableCaption>A list of your recent invoices.</TableCaption>
+      <TableHeader>
+        <TableRow>
+          <TableHead className="w-[100px]">Id</TableHead>
+          <TableHead>Description</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        {itemsList.map((item, index) => (
+          <TableRow key={index}>
+            <TableCell className="font-medium">{item.id}</TableCell>
+            <TableCell>{item.description}</TableCell>
+          </TableRow>
+        ))}
+      </TableBody>
+      <TableFooter>
+        <TableRow>
+          <TableCell colSpan={1} />
+          <TableCell className="text-right">
+            Total: <strong>{itemsList.length}</strong>
+          </TableCell>
+        </TableRow>
+      </TableFooter>
+    </Table>
   )
 }
-
-export default ItemComponent

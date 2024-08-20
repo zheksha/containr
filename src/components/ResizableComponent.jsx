@@ -9,7 +9,9 @@ export const ResizableComponent = ({ primary, secondary, tertiary }) => {
   return (
     <ResizablePanelGroup direction="horizontal" className="rounded-lg border">
       <ResizablePanel defaultSize={50}>
-        <div className="flex h-80 items-start justify-start p-6">{primary}</div>
+        <div className="flex h-[720px] items-start justify-start p-6">
+          {primary}
+        </div>
       </ResizablePanel>
       <ResizableHandle withHandle />
       <ResizablePanel defaultSize={50}>

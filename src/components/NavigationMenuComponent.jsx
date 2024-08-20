@@ -11,7 +11,7 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu'
-import { ModeToggle } from './ModeToggle'
+import { ModeToggleComponent } from './ModeToggleComponent'
 import { Button } from './ui/button'
 
 const components = [
@@ -120,7 +120,7 @@ export function NavigationMenuComponent() {
         <Button variant={'outline'} className="mr-3">
           Sign In
         </Button>
-        <ModeToggle />
+        <ModeToggleComponent />
       </div>
     </div>
   )
