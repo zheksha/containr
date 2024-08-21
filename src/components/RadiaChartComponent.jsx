@@ -16,7 +16,7 @@ import {
 } from '@/components/ui/chart'
 
 const chartConfig = {
-  maxCapacity: {
+  remainingCapacity: {
     label: 'Remaining Capacity',
     color: 'hsl(var(--chart-1))',
   },
@@ -26,11 +26,15 @@ const chartConfig = {
   },
 }
 
+// maxCapacity = 100
+// currentCapcity = 40
+// maxCapcity - currentCapcity == 60
+
 export const RadialChartComponent = ({ maxCapacity, currentCapacity }) => {
   const chartData = [
     {
       data: 'Capacity',
-      maxCapacity: maxCapacity - currentCapacity,
+      remainingCapacity: maxCapacity - currentCapacity,
       currentCapacity,
     },
   ]
@@ -82,16 +86,16 @@ export const RadialChartComponent = ({ maxCapacity, currentCapacity }) => {
               />
             </PolarRadiusAxis>
             <RadialBar
-              dataKey="maxCapacity"
+              dataKey="remainingCapacity"
               stackId="a"
               cornerRadius={5}
-              fill="var(--color-maxCapacity)"
+              fill="var(--color-remainingCapacity)"
               className="stroke-transparent stroke-2"
             />
             <RadialBar
               dataKey="currentCapacity"
-              fill="var(--color-currentCapacity)"
               stackId="a"
+              fill="var(--color-currentCapacity)"
               cornerRadius={5}
               className="stroke-transparent stroke-2"
             />

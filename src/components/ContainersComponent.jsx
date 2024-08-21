@@ -8,10 +8,21 @@ import {
 } from '@/components/ui/popover'
 import { CirclePlus, Plus } from 'lucide-react'
 import { Textarea } from './ui/textarea'
+import { Checkbox } from './ui/checkbox'
+
+const containers = [
+  {
+    name: 'Living Room Living Room Living Room Living Room',
+    isSelected: false,
+  },
+  { name: 'Bedroom', isSelected: false },
+  { name: 'Kitchen', isSelected: false },
+  { name: 'Garage', isSelected: true },
+]
 
 export const ContainersComponent = () => {
   return (
-    <div className="flex justify-between items-center w-full">
+    <div className="grid grid-cols-2 w-full text-start">
       <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
         Containers
       </h4>
@@ -19,7 +30,7 @@ export const ContainersComponent = () => {
       <Popover>
         {/** Main button that triggers popover */}
         <PopoverTrigger asChild>
-          <Button variant="outline">
+          <Button className="w-fit ml-auto" variant="outline">
             Add Container <CirclePlus className="ml-2 h-4 w-4" />
           </Button>
         </PopoverTrigger>
@@ -70,6 +81,20 @@ export const ContainersComponent = () => {
           </div>
         </PopoverContent>
       </Popover>
+
+      {containers.map((el, i) => {
+        return (
+          <div
+            key={i}
+            className={`col-span-2 w-full border mt-2 rounded-lg p-3 flex items-center gap-3 hover:bg-slate-800 ${
+              el.isSelected ? 'bg-slate-800' : ''
+            }`}
+          >
+            <Checkbox id="terms" checked={el.isSelected} />
+            <p htmlFor="terms">{el.name}</p>
+          </div>
+        )
+      })}
     </div>
   )
 }

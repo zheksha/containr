@@ -4,11 +4,10 @@ import { ContainersComponent } from './components/ContainersComponent'
 import { ItemsComponent } from './components/ItemsComponent'
 import { NavigationMenuComponent } from './components/NavigationMenuComponent'
 import { ResizableComponent } from './components/ResizableComponent'
-import { ThemeProvider } from './components/ThemeProvider'
 
 const App = () => {
   return (
-    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+    <div className="p-8 px-24">
       <NavigationMenuComponent />
       <ResizableComponent
         primary={<ItemsComponent />}
@@ -23,7 +22,7 @@ const App = () => {
           />
         }
       />
-    </ThemeProvider>
+    </div>
   )
 }
 
