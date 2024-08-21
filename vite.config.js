@@ -8,7 +8,7 @@ export default defineConfig({
   build: {
     assetsInlineLimit: 0, // Ensure binary files are not inlined
   },
-  plugins: [react(), createHtmlPlugin()],
+  plugins: [react()],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
