@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import * as React from 'react'
 
 import { cn } from '@/lib/utils'
@@ -13,6 +14,8 @@ import {
 } from '@/components/ui/navigation-menu'
 import { ModeToggleComponent } from './ModeToggleComponent'
 import { Button } from './ui/button'
+
+import { handleLogout } from '../firebase/auth'
 
 const components = [
   {
@@ -117,8 +120,8 @@ export function NavigationMenuComponent() {
         </NavigationMenuList>
       </NavigationMenu>
       <div className="flex items-start">
-        <Button variant={'outline'} className="mr-3">
-          Sign In
+        <Button variant={'outline'} className="mr-3" onClick={handleLogout}>
+          Logout
         </Button>
         <ModeToggleComponent />
       </div>

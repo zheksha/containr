@@ -5,11 +5,18 @@ import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { LoginComponent } from './components/LoginComponent'
 import { ThemeProvider } from './components/ThemeProvider'
+import { Provider } from 'react-redux'
+import { store } from './redux/store'
+import { Protected } from './components/Protected'
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <App />,
+    element: (
+      <Protected>
+        <App />
+      </Protected>
+    ),
   },
   {
     path: '/login',
@@ -20,7 +27,9 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      <RouterProvider router={router} />
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
     </ThemeProvider>
   </StrictMode>
 )

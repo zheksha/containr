@@ -1,29 +1,20 @@
 import { Button } from '@/components/ui/button'
-import { LoginImage } from './LoginImage'
-import { useState, useEffect } from 'react'
+// import { LoginImage } from './LoginImage'
 import LoginTurtle from './LoginTurtle'
+import { handleGoogleSignIn, handleLogout } from '../firebase/auth'
+import { Navigate } from 'react-router-dom'
+
+import { useSelector } from 'react-redux'
 
 export function LoginComponent() {
-  const templates = [
-    ['Contain[R]', 'Store', 'Your', '💎'],
-    ['Contain[R]', 'Throw', 'Your', '💩'],
-  ]
+  const user = useSelector((state) => state.user)
+  const onBtnClick = () => {
+    handleGoogleSignIn()
+  }
 
-  const [text, setText] = useState(templates[0])
-
-  useEffect(() => {
-    let index = 0
-
-    const interval = setInterval(() => {
-      index = (index + 1) % templates.length
-      setText(templates[index])
-    }, 3000)
-
-    // Clearing the interval on component unmount
-    return () => clearInterval(interval)
-  }, [templates])
-
-  return (
+  return user?.isLoggedIn ? (
+    <Navigate to="/"></Navigate>
+  ) : (
     <div className="w-full h-svh lg:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[800px]">
       <div className="flex items-center justify-center py-12">
         <div className="mx-auto grid w-[350px] gap-6">
@@ -34,11 +25,14 @@ export function LoginComponent() {
             </p>
           </div>
           <div className="grid gap-4">
-            <Button variant="outline" className="w-full">
+            <Button variant="outline" className="w-full" onClick={onBtnClick}>
               Login with Google
             </Button>
             <Button variant="outline" className="w-full">
               Login with Github
+            </Button>
+            <Button variant="outline" className="w-full" onClick={handleLogout}>
+              Logout
             </Button>
           </div>
         </div>
