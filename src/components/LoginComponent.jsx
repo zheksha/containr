@@ -31,9 +31,6 @@ export function LoginComponent() {
             <Button variant="outline" className="w-full">
               Login with Github
             </Button>
-            <Button variant="outline" className="w-full" onClick={handleLogout}>
-              Logout
-            </Button>
           </div>
         </div>
       </div>
