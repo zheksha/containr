@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import {
   Table,
   TableBody,
@@ -10,7 +9,7 @@ import {
   TableRow,
 } from '@/components/ui/table'
 
-export const ItemComponent = ({ itemsList }) => {
+export const ItemComponent = ({ items }) => {
   return (
     <Table
       className="text-left border rounded-lg "
@@ -24,7 +23,7 @@ export const ItemComponent = ({ itemsList }) => {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {itemsList.map((item, index) => (
+        {items.map((item, index) => (
           <TableRow key={index}>
             <TableCell className="font-medium">{item.id}</TableCell>
             <TableCell>{item.description}</TableCell>
@@ -35,7 +34,7 @@ export const ItemComponent = ({ itemsList }) => {
         <TableRow>
           <TableCell colSpan={1} />
           <TableCell className="text-right">
-            Total: <strong>{itemsList.length}</strong>
+            Total: <strong>{items.length}</strong>
           </TableCell>
         </TableRow>
       </TableFooter>

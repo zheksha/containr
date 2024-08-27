@@ -17,7 +17,7 @@ import {
 
 const chartConfig = {
   remainingCapacity: {
-    label: 'Remaining Capacity',
+    label: 'Units in container',
     color: 'hsl(var(--chart-1))',
   },
   currentCapacity: {

@@ -1,18 +1,16 @@
-/* eslint-disable react/prop-types */
+import { useSelector } from 'react-redux'
 import { RadialChartComponent } from './RadiaChartComponent'
 
-const ContainerDetailsComponent = ({
-  name,
-  dateCreated,
-  description,
-  maxCapacity,
-  currentCapacity,
-}) => {
+const ContainerDetailsComponent = () => {
+  const { name, dateCreated, description, capacity, items } = useSelector(
+    (state) => state.containers.selectedContainer
+  )
+
   return (
     <div className="grid grid-cols-2 gap-4 w-full h-full">
       <RadialChartComponent
-        maxCapacity={maxCapacity}
-        currentCapacity={currentCapacity}
+        maxCapacity={capacity}
+        currentCapacity={capacity - items.length}
       />
       <div className="text-start">
         <h4 className="mb-8 font-semibold">Container Details</h4>

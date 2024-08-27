@@ -12,15 +12,7 @@ const App = () => {
       <ResizableComponent
         primary={<ItemsComponent />}
         secondary={<ContainersComponent />}
-        tertiary={
-          <ContainerDetailsComponent
-            name="Living room"
-            dateCreated="20 Aug, 2024"
-            description="Lorem Ipsum Dolor Sit Amet"
-            maxCapacity={120}
-            currentCapacity={90}
-          />
-        }
+        tertiary={<ContainerDetailsComponent />}
       />
     </div>
   )
