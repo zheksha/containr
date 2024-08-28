@@ -50,27 +50,7 @@ const initialState = {
       ],
     },
   ],
-  selectedContainer: {
-    id: 123,
-    name: 'Test',
-    capacity: 15,
-    description: 'Lorem Ipsum Dolor Sit Amet',
-    dateCreated: '26th Aug, 2024',
-    items: [
-      {
-        id: 321,
-        description: 'Item Description',
-      },
-      {
-        id: 321,
-        description: 'Item Description',
-      },
-      {
-        id: 321,
-        description: 'Item Description',
-      },
-    ],
-  },
+  selectedContainer: {},
 }
 
 const containersSlice = createSlice({
@@ -86,13 +66,21 @@ const containersSlice = createSlice({
       return state
     },
     addItemAction: (state, action) => {
-      console.log(action.payload)
+      for (let i = 0; i < state.containersList.length; i++) {
+        if (
+          state.containersList[i].id === action.payload.selectedContainer.id
+        ) {
+          state.containersList[i].items.push(action.payload.item)
+          state.selectedContainer = state.containersList[i]
+          break
+        }
+      }
       return state
     },
   },
 })
 
-export const { addContainerAction, selectedContainerAction } =
+export const { addContainerAction, selectedContainerAction, addItemAction } =
   containersSlice.actions
 
 export default containersSlice.reducer

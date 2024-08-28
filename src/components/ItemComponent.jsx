@@ -23,9 +23,11 @@ export const ItemComponent = ({ items }) => {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {items.map((item, index) => (
+        {items?.map((item, index) => (
           <TableRow key={index}>
-            <TableCell className="font-medium">{item.id}</TableCell>
+            <TableCell className="text-sm text-muted-foreground">
+              {item.id}
+            </TableCell>
             <TableCell>{item.description}</TableCell>
           </TableRow>
         ))}
@@ -34,7 +36,7 @@ export const ItemComponent = ({ items }) => {
         <TableRow>
           <TableCell colSpan={1} />
           <TableCell className="text-right">
-            Total: <strong>{items.length}</strong>
+            Total: <strong>{items?.length}</strong>
           </TableCell>
         </TableRow>
       </TableFooter>

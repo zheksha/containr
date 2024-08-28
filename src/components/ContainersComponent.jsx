@@ -15,6 +15,9 @@ import {
   selectedContainerAction,
 } from '../redux/containersSlice'
 import { useState } from 'react'
+import { v4 as uuidv4 } from 'uuid'
+import { formatDate } from '../lib/utils'
+import { toast } from 'sonner'
 
 export const ContainersComponent = () => {
   const { containersList, selectedContainer } = useSelector(
@@ -25,25 +28,32 @@ export const ContainersComponent = () => {
     name: '',
     capacity: '',
     description: '',
+    items: [],
   })
-
-  const onHandleAdd = () => {
-    dispatch(
-      addContainerAction({
-        ...details,
-        id: Date.now(),
-        dateCreated: Date.now(),
-      })
-    )
-  }
-
-  const onHandleCheckBox = (el) => {
-    dispatch(selectedContainerAction(el))
-  }
 
   const onInputChange = (e, target) => {
     e.preventDefault()
     setDetails({ ...details, [target]: e.target.value })
+  }
+
+  const onHandleAddContainer = () => {
+    dispatch(
+      addContainerAction({
+        ...details,
+        capacity: Math.abs(details.capacity),
+        id: uuidv4().substring(0, 5),
+        dateCreated: formatDate(Date.now()),
+      })
+    )
+    setDetails({ name: '', capacity: '', description: '' })
+
+    toast.success(`Your container was added`, {
+      description: formatDate(Date.now()),
+    })
+  }
+
+  const onHandleCheckBox = (el) => {
+    dispatch(selectedContainerAction(el))
   }
 
   return (
@@ -89,6 +99,7 @@ export const ContainersComponent = () => {
                 <Input
                   id="capacity"
                   value={details.capacity}
+                  type="number"
                   defaultValue={20}
                   className="col-span-2 h-8"
                   onChange={(e) => {
@@ -113,7 +124,12 @@ export const ContainersComponent = () => {
 
               {/** Button to submit */}
               <div className="flex justify-end mt-2">
-                <Button variant="secondary" type="submit" onClick={onHandleAdd}>
+                <Button
+                  variant="secondary"
+                  type="submit"
+                  onClick={onHandleAddContainer}
+                  disabled={!details?.name || !details?.capacity}
+                >
                   Add <Plus className="ml-2 h-4 w-4" />
                 </Button>
               </div>
@@ -127,8 +143,8 @@ export const ContainersComponent = () => {
         return (
           <div
             key={i}
-            className={`col-span-2 w-full border mt-2 rounded-lg p-3 flex items-center gap-3 hover:bg-slate-800 ${
-              isSelected ? 'bg-slate-800' : ''
+            className={`col-span-2 w-full border mt-2 rounded-lg p-3 flex items-center gap-3 dark:hover:bg-slate-800 hover:bg-slate-200 ${
+              isSelected ? 'dark:bg-slate-800 bg-slate-200 ' : ''
             }`}
           >
             <Checkbox

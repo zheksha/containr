@@ -70,7 +70,7 @@ export const RadialChartComponent = ({ maxCapacity, currentCapacity }) => {
                           y={(viewBox.cy || 0) - 16}
                           className="fill-foreground text-2xl font-bold"
                         >
-                          {maxCapacity.toLocaleString()}
+                          {maxCapacity?.toLocaleString()}
                         </tspan>
                         <tspan
                           x={viewBox.cx}

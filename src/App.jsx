@@ -1,3 +1,4 @@
+import { Toaster } from 'sonner'
 import './App.css'
 import ContainerDetailsComponent from './components/ContainerDetailsComponent'
 import { ContainersComponent } from './components/ContainersComponent'
@@ -14,6 +15,7 @@ const App = () => {
         secondary={<ContainersComponent />}
         tertiary={<ContainerDetailsComponent />}
       />
+      <Toaster richColors closeButton />
     </div>
   )
 }
