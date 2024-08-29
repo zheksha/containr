@@ -18,7 +18,7 @@ export const ItemsComponent = () => {
 
   const onHandleInput = (e) => {
     e.preventDefault()
-    setInputValue(e.target.value.trim())
+    setInputValue(e.target.value)
   }
 
   const onHandleAddButton = () => {
@@ -26,7 +26,6 @@ export const ItemsComponent = () => {
       toast.error(`You reached max capacity of your container ${name} `, {
         description: formatDate(Date.now()),
       })
-
       return
     }
 
@@ -57,7 +56,7 @@ export const ItemsComponent = () => {
               variant="secondary"
               type="submit"
               onClick={onHandleAddButton}
-              disabled={!inputValue?.length}
+              disabled={!inputValue?.length || inputValue.trim().length === 0}
             >
               Add Item <CirclePlus className="ml-2 h-4 w-4" />
             </Button>

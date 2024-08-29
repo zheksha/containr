@@ -95,3 +95,13 @@ canvas {
     @apply bg-background text-foreground;
   }
 }
+
+.hidden-on-screen {
+  display: none;
+}
+
+@media print {
+  .hidden-on-screen {
+    display: block !important;
+  }
+}

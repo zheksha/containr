@@ -15,7 +15,7 @@ export const ItemComponent = ({ items }) => {
       className="text-left border rounded-lg "
       containerClassname="h-fit max-h-[650px] overflow-y-auto relative scrollbar"
     >
-      <TableCaption>A list of your recent invoices.</TableCaption>
+      <TableCaption>A list of items in your container.</TableCaption>
       <TableHeader>
         <TableRow>
           <TableHead className="w-[100px]">Id</TableHead>

@@ -1,13 +1,13 @@
 import { useSelector } from 'react-redux'
 import { RadialChartComponent } from './RadiaChartComponent'
-import QRCode from 'react-qr-code'
+import PrintQR from './PrintQR'
 
 const ContainerDetailsComponent = () => {
-  const { name, dateCreated, description, capacity, items } = useSelector(
-    (state) => state.containers.selectedContainer
-  )
+  const { selectedContainer } = useSelector((state) => state.containers)
+  const { name, dateCreated, description, capacity, items, id } =
+    selectedContainer
 
-  return (
+  return id ? (
     <div className="grid grid-cols-2 gap-4 w-full h-full">
       <RadialChartComponent
         maxCapacity={capacity ? capacity : 0}
@@ -27,22 +27,12 @@ const ContainerDetailsComponent = () => {
             <p className="text-sm text-muted-foreground">{description}</p>
           </li>
         </ul>
-        <div
-          style={{
-            height: 'auto',
-            margin: '0 auto',
-            maxWidth: 100,
-            width: '100%',
-          }}
-        >
-          <QRCode
-            size={256}
-            style={{ height: 'auto', maxWidth: '100%', width: '100%' }}
-            value={'https://containr.netlify.app/'}
-            viewBox={`0 0 256 256`}
-          />
-        </div>
+        <PrintQR selectedContainer={selectedContainer} />
       </div>
+    </div>
+  ) : (
+    <div className="w-full border mt-2 rounded-lg p-3  text-center">
+      Select container to see the details
     </div>
   )
 }
