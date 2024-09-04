@@ -61,48 +61,48 @@ const initialState = {
         },
       ],
     },
-    {
-      id: 104,
-      name: 'Garage Bin D',
-      capacity: 20,
-      description: 'Large bin for storing miscellaneous garage items.',
-      dateCreated: '26th Aug, 2024',
-      items: [
-        {
-          id: '5y6z7a',
-          description: 'Car Cleaning Supplies - Wax, Polishes',
-        },
-        {
-          id: '8b9c0d',
-          description: 'Camping Gear - Tent, Sleeping Bag, Stove',
-        },
-        {
-          id: '1e2f3g',
-          description: 'Sports Equipment - Balls, Rackets',
-        },
-        {
-          id: '4h5i6j',
-          description: 'Bicycling Tools - Tire Pump, Wrenches',
-        },
-      ],
-    },
-    {
-      id: 105,
-      name: 'Office Supplies E',
-      capacity: 5,
-      description: 'Box for organizing office stationery and supplies.',
-      dateCreated: '26th Aug, 2024',
-      items: [
-        {
-          id: '7k8l9m',
-          description: 'Notebooks, Pens, Pencils',
-        },
-        {
-          id: '0n1o2p',
-          description: 'Printer Paper, Envelopes',
-        },
-      ],
-    },
+    // {
+    //   id: 104,
+    //   name: 'Garage Bin D',
+    //   capacity: 20,
+    //   description: 'Large bin for storing miscellaneous garage items.',
+    //   dateCreated: '26th Aug, 2024',
+    //   items: [
+    //     {
+    //       id: '5y6z7a',
+    //       description: 'Car Cleaning Supplies - Wax, Polishes',
+    //     },
+    //     {
+    //       id: '8b9c0d',
+    //       description: 'Camping Gear - Tent, Sleeping Bag, Stove',
+    //     },
+    //     {
+    //       id: '1e2f3g',
+    //       description: 'Sports Equipment - Balls, Rackets',
+    //     },
+    //     {
+    //       id: '4h5i6j',
+    //       description: 'Bicycling Tools - Tire Pump, Wrenches',
+    //     },
+    //   ],
+    // },
+    // {
+    //   id: 105,
+    //   name: 'Office Supplies E',
+    //   capacity: 5,
+    //   description: 'Box for organizing office stationery and supplies.',
+    //   dateCreated: '26th Aug, 2024',
+    //   items: [
+    //     {
+    //       id: '7k8l9m',
+    //       description: 'Notebooks, Pens, Pencils',
+    //     },
+    //     {
+    //       id: '0n1o2p',
+    //       description: 'Printer Paper, Envelopes',
+    //     },
+    //   ],
+    // },
   ],
   selectedContainer: {},
 }
@@ -111,6 +111,10 @@ const containersSlice = createSlice({
   name: 'containers',
   initialState,
   reducers: {
+    setContainersAction: (state, action) => {
+      state.containersList = action.payload
+      return state
+    },
     addContainerAction: (state, action) => {
       state.containersList.push(action.payload)
       return state
@@ -134,7 +138,11 @@ const containersSlice = createSlice({
   },
 })
 
-export const { addContainerAction, selectedContainerAction, addItemAction } =
-  containersSlice.actions
+export const {
+  addContainerAction,
+  selectedContainerAction,
+  addItemAction,
+  setContainersAction,
+} = containersSlice.actions
 
 export default containersSlice.reducer

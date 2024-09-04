@@ -35,7 +35,7 @@ export function LoginComponent() {
         </div>
       </div>
       <div className="hidden bg-muted lg:block text-left text-slate-900 w-200">
-        <LoginTurtle
+        {/* <LoginTurtle
           spheres={[
             [1, 'orange', 0.05, [-4, -1, -1]],
             [0.75, 'hotpink', 0.1, [-4, 2, -2]],
@@ -50,7 +50,7 @@ export function LoginComponent() {
             [1, 'pink', 0.3, [-4, 2, -4]],
             [1, 'skyblue', 0.3, [-4, 2, -4]],
           ]}
-        />
+        /> */}
 
         {/* <LoginImage texts={text} /> */}
       </div>
