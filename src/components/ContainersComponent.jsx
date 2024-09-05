@@ -18,8 +18,6 @@ import { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import { formatDate } from '../lib/utils'
 import { toast } from 'sonner'
-import { updateUserData } from '../firebase/firestore'
-import { useEffect } from 'react'
 
 export const ContainersComponent = () => {
   const { containersList, selectedContainer } = useSelector(
@@ -48,6 +46,7 @@ export const ContainersComponent = () => {
       })
     )
     setDetails({ name: '', capacity: '', description: '' })
+
     toast.success(`Your container was added`, {
       description: formatDate(Date.now()),
     })
@@ -56,12 +55,6 @@ export const ContainersComponent = () => {
   const onHandleCheckBox = (el) => {
     dispatch(selectedContainerAction(el))
   }
-
-  useEffect(() => {
-    if (containersList.length > 0) {
-      updateUserData({ containers: containersList })
-    }
-  }, [containersList])
 
   return (
     <div className="grid grid-cols-2 w-full text-start">
