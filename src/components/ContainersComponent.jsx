@@ -48,7 +48,6 @@ export const ContainersComponent = () => {
       })
     )
     setDetails({ name: '', capacity: '', description: '' })
-
     toast.success(`Your container was added`, {
       description: formatDate(Date.now()),
     })
@@ -59,7 +58,9 @@ export const ContainersComponent = () => {
   }
 
   useEffect(() => {
-    updateUserData({ containers: containersList })
+    if (containersList.length > 0) {
+      updateUserData({ containers: containersList })
+    }
   }, [containersList])
 
   return (

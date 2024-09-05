@@ -29,6 +29,7 @@ const googleSignIn = () => {
             email: user.email,
             createdAt: new Date(),
             lastLogin: new Date(),
+            containers: [],
           })
         } else {
           await updateDoc(userRef, { lastLogin: new Date() })

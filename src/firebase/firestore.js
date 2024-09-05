@@ -11,10 +11,8 @@ export const getUserData = async (userId) => {
     const userDoc = await getDoc(userRef)
     const { containers } = userDoc.data() // undefined || data
 
-    if (containers) {
+    if (containers.length > 0) {
       store.dispatch(setContainersAction(containers))
-    } else {
-      await updateDoc(userRef, { containers: [] })
     }
   } catch (error) {
     console.error(error)
