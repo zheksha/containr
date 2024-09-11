@@ -8,6 +8,7 @@ import { ThemeProvider } from './components/ThemeProvider'
 import { Provider } from 'react-redux'
 import { store } from './redux/store'
 import { Protected } from './components/Protected'
+import { ItemsComponentView } from './components/ItemsComponentView'
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,15 @@ const router = createBrowserRouter([
   {
     path: '/login',
     element: <LoginComponent />,
+  },
+
+  {
+    path: '/view/:containerId',
+    element: (
+      <Protected>
+        <ItemsComponentView />
+      </Protected>
+    ),
   },
 ])
 

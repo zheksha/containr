@@ -13,14 +13,14 @@ import {
 } from './ui/card'
 
 const PrintQR = ({ selectedContainer }) => {
-  const { name, description, dateCreated } = selectedContainer
+  const { name, description, dateCreated, id } = selectedContainer
   const componentRef = useRef()
   return (
     <div className="h-auto my-0 mx-auto max-w-[100px] w-full flex flex-col">
       <QRCode
         size={256}
         style={{ height: 'auto', maxWidth: '100%', width: '100%' }}
-        value={'https://containr.netlify.app/'}
+        value={`https://containr.netlify.app/view/${id}`}
         viewBox={`0 0 256 256`}
       />
 

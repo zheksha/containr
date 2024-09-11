@@ -18,8 +18,12 @@ import { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import { formatDate } from '../lib/utils'
 import { toast } from 'sonner'
+import PerfectScrollbar from 'react-perfect-scrollbar'
+import 'react-perfect-scrollbar/dist/css/styles.css'
+import { useNavigate } from 'react-router-dom'
 
 export const ContainersComponent = () => {
+  const navigate = useNavigate()
   const { containersList, selectedContainer } = useSelector(
     (state) => state.containers
   )
@@ -53,6 +57,8 @@ export const ContainersComponent = () => {
   }
 
   const onHandleCheckBox = (el) => {
+    console.log(window.location.href)
+    // navigate(`/view/${el.id}`)
     dispatch(selectedContainerAction(el))
   }
 
@@ -138,24 +144,27 @@ export const ContainersComponent = () => {
         </PopoverContent>
       </Popover>
 
-      {containersList?.map((container, i) => {
-        const isSelected = container.id === selectedContainer.id
-        return (
-          <div
-            key={i}
-            className={`col-span-2 w-full border mt-2 rounded-lg p-3 flex items-center gap-3 dark:hover:bg-slate-800 hover:bg-slate-200 ${
-              isSelected ? 'dark:bg-slate-800 bg-slate-200 ' : ''
-            }`}
-          >
-            <Checkbox
-              id="terms"
-              checked={isSelected}
-              onClick={() => onHandleCheckBox(container)}
-            />
-            <p htmlFor="terms">{container.name}</p>
-          </div>
-        )
-      })}
+      {/** Scrollable container list using PerfectScrollbar */}
+      <PerfectScrollbar className="col-span-2 w-full mt-4 max-h-80">
+        {containersList?.map((container, i) => {
+          const isSelected = container.id === selectedContainer.id
+          return (
+            <div
+              key={i}
+              className={`w-full border mt-2 rounded-lg p-3 flex items-center gap-3 dark:hover:bg-slate-800 hover:bg-slate-200 ${
+                isSelected ? 'dark:bg-slate-800 bg-slate-200 ' : ''
+              }`}
+            >
+              <Checkbox
+                id="terms"
+                checked={isSelected}
+                onClick={() => onHandleCheckBox(container)}
+              />
+              <p htmlFor="terms">{container.name}</p>
+            </div>
+          )
+        })}
+      </PerfectScrollbar>
     </div>
   )
 }
