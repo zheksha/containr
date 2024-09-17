@@ -3,6 +3,9 @@ import {
   getAuth,
   GoogleAuthProvider,
   signInWithPopup,
+  signInWithRedirect,
+  browserLocalPersistence,
+  setPersistence,
 } from 'firebase/auth'
 import { app } from './config'
 import { loginUserAction, logoutUserAction } from '../redux/userSlice'

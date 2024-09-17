@@ -15,12 +15,15 @@ import {
 const PrintQR = ({ selectedContainer }) => {
   const { name, description, dateCreated, id } = selectedContainer
   const componentRef = useRef()
+
+  const appUrl = import.meta.env.VITE_APP_URL
+
   return (
     <div className="h-auto my-0 mx-auto max-w-[100px] w-full flex flex-col">
       <QRCode
         size={256}
         style={{ height: 'auto', maxWidth: '100%', width: '100%' }}
-        value={`https://containr.netlify.app/view/${id}`}
+        value={`${appUrl}/view/${id}`}
         viewBox={`0 0 256 256`}
       />
 

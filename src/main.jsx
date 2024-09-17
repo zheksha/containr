@@ -6,9 +6,10 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { LoginComponent } from './components/LoginComponent'
 import { ThemeProvider } from './components/ThemeProvider'
 import { Provider } from 'react-redux'
-import { store } from './redux/store'
+import { persistor, store } from './redux/store'
 import { Protected } from './components/Protected'
 import { ItemsComponentView } from './components/ItemsComponentView'
+import { PersistGate } from 'redux-persist/integration/react'
 
 const router = createBrowserRouter([
   {
@@ -38,7 +39,9 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <Provider store={store}>
-        <RouterProvider router={router} />
+        <PersistGate loading={null} persistor={persistor}>
+          <RouterProvider router={router} />
+        </PersistGate>
       </Provider>
     </ThemeProvider>
   </StrictMode>
