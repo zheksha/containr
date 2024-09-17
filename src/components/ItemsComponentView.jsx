@@ -9,13 +9,20 @@ import { v4 as uuidv4 } from 'uuid'
 import { toast } from 'sonner'
 import { formatDate } from '../lib/utils'
 import { useParams } from 'react-router-dom'
+import { getUserData } from '../firebase/firestore.js'
 
 export const ItemsComponentView = () => {
-  const [inputValue, setInputValue] = useState('') // {descriptiom: "text from input"}
+  const [inputValue, setInputValue] = useState('')
   const [selectedContainer, setSelectedContainer] = useState()
-  const { containersList } = useSelector((state) => state.containers)
+  const {
+    containers: { containersList },
+    user,
+  } = useSelector((state) => state)
 
   const { containerId } = useParams()
+  useEffect(() => {
+    getUserData(user?.uid)
+  }, [user?.uid])
 
   useEffect(() => {
     setSelectedContainer(

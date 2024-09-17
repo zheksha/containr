@@ -9,8 +9,7 @@ export const getUserData = async (userId) => {
   try {
     const userRef = doc(db, 'users', userId)
     const userDoc = await getDoc(userRef)
-    const { containers } = userDoc.data() // undefined || data
-
+    const { containers } = userDoc.data()
     if (containers.length > 0) {
       store.dispatch(setContainersAction(containers))
     }
@@ -24,7 +23,6 @@ export const updateUserData = async (containers) => {
   try {
     const userRef = doc(db, 'users', user.uid)
     await updateDoc(userRef, containers)
-    console.log('Document written with ID: ', user.uid)
   } catch (error) {
     console.error('Error adding document: ', error)
   }

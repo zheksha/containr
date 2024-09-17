@@ -15,7 +15,7 @@ export default defineConfig({
     },
   },
   server: {
-    host: 'localhost', // You can change this to 0.0.0.0 to listen on all interfaces
+    host: '0.0.0.0', // You can change this to 0.0.0.0 to listen on all interfaces
     port: 3000, // Specify the port
     strictPort: true, // If true, Vite will fail if the port is already in use
   },
