@@ -9,7 +9,7 @@ import { v4 as uuidv4 } from 'uuid'
 import { toast } from 'sonner'
 import { formatDate } from '../lib/utils'
 import { useParams } from 'react-router-dom'
-import { getUserData } from '../firebase/firestore.js'
+import { getUserData, updateUserData } from '../firebase/firestore.js'
 
 export const ItemsComponentView = () => {
   const [inputValue, setInputValue] = useState('')
@@ -18,8 +18,9 @@ export const ItemsComponentView = () => {
     containers: { containersList },
     user,
   } = useSelector((state) => state)
-
   const { containerId } = useParams()
+  const { items, name, capacity } = selectedContainer || {}
+  const dispatch = useDispatch()
   useEffect(() => {
     getUserData(user?.uid)
   }, [user?.uid])
@@ -28,13 +29,13 @@ export const ItemsComponentView = () => {
     setSelectedContainer(
       containersList.filter((el) => el.id === containerId)[0]
     )
-  }, [containerId, containersList])
+  }, [containerId])
 
-  console.log(selectedContainer)
-
-  const { items, name, capacity } = selectedContainer || {}
-
-  const dispatch = useDispatch()
+  useEffect(() => {
+    if (containersList.length > 0) {
+      updateUserData({ containers: containersList })
+    }
+  }, [containersList])
 
   const onHandleInput = (e) => {
     e.preventDefault()
